@@ -17,10 +17,9 @@ export default function BentoGrid() {
           <div class="md:col-span-7 group">
             <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-surface border border-border shadow-surface overflow-hidden relative">
               <div class="relative z-10 mb-20">
-                <div class="text-[10px] font-bold text-accent uppercase tracking-[0.2em] mb-4">The Timeline</div>
                 <h3 class="text-2xl font-bold tracking-tight mb-4">See the full story</h3>
-                <p class="text-foreground/60 max-w-[40ch]">
-                  A chronological history of symptoms, appointments, and medical events that makes patterns easy to spot.
+                <p class="text-foreground/60 max-w-[45ch]">
+                  Instead of loose notes and half-remembered dates, you get a readable timeline that keeps appointments, symptoms, and follow-ups in sequence.
                 </p>
               </div>
 
@@ -33,7 +32,7 @@ export default function BentoGrid() {
                     { title: 'Blood Work Results', date: 'Mar 15', color: 'bg-success' },
                     { title: 'Follow-up Appt', date: 'Mar 10', color: 'bg-accent' }
                   ].map((item, i) => (
-                    <div class={`flex items-center gap-4 p-3 rounded-xl bg-surface border border-border transition-all duration-500 delay-[calc(i*100ms)] group-hover:translate-x-2`}>
+                    <div class={`flex items-center gap-4 p-3 rounded-xl bg-surface border border-border transition-all duration-500`}>
                       <div class={`w-2 h-10 ${item.color} rounded-full`} />
                       <div>
                         <div class="text-xs font-bold text-foreground/40">{item.date}</div>
@@ -50,7 +49,6 @@ export default function BentoGrid() {
           <div class="md:col-span-5 group">
             <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-surface border border-border shadow-surface overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="text-[10px] font-bold text-accent uppercase tracking-[0.2em] mb-4">Connections</div>
                 <h3 class="text-2xl font-bold tracking-tight mb-4">Everything linked</h3>
                 <p class="text-foreground/60">
                   Connect facilities, doctors, and cases. One tap shows you everything related to a specific condition.
@@ -74,18 +72,17 @@ export default function BentoGrid() {
 
           {/* Privacy - Row 2, Col 1-5 */}
           <div class="md:col-span-5 group">
-            <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-foreground text-background shadow-2xl overflow-hidden relative">
+            <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-surface border border-border shadow-surface overflow-hidden relative">
               <div class="relative z-10">
-                <div class="text-[10px] font-bold text-accent uppercase tracking-[0.2em] mb-4">Security</div>
-                <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Your data stays yours</h3>
-                <p class="text-background/60">
-                  Private by default. Local backups and on-device storage mean nobody sees your health data but you.
+                <h3 class="text-2xl font-bold tracking-tight mb-4">Your data stays yours</h3>
+                <p class="text-foreground/60">
+                  Your medical data never leaves your device. We use local-first storage to ensure total privacy. Secure on-device backups are coming in the next update.
                 </p>
               </div>
               
               <div class="mt-12 flex items-center justify-center">
-                <div class="w-24 h-24 rounded-3xl bg-white/10 flex items-center justify-center border border-white/20 animate-float">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                <div class="w-24 h-24 rounded-3xl bg-accent/10 flex items-center justify-center border border-accent/20 animate-float text-accent">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
@@ -99,18 +96,17 @@ export default function BentoGrid() {
             <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-surface border border-border shadow-surface overflow-hidden relative">
               <div class="flex flex-col md:flex-row gap-8 items-start">
                 <div class="flex-1">
-                  <div class="text-[10px] font-bold text-accent uppercase tracking-[0.2em] mb-4">Documents</div>
                   <h3 class="text-2xl font-bold tracking-tight mb-4">Files in context</h3>
                   <p class="text-foreground/60 mb-8">
-                    Attach lab results, insurance cards, or imaging directly to events and appointments.
+                    Keep files where they belong, not buried in a gallery or inbox — Attach lab results, insurance cards, or imaging directly to events and appointments.
                   </p>
                 </div>
                 
                 <div class="flex-1 grid grid-cols-2 gap-4">
                   {[1, 2, 3, 4].map(i => (
                     <div class="aspect-square rounded-2xl bg-surface-secondary border border-border p-2 group-hover:scale-105 transition-transform duration-500 overflow-hidden">
-                      <div class="w-full h-full bg-white rounded-xl shadow-sm flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-foreground/20">
+                      <div class="w-full h-full bg-surface rounded-xl shadow-sm flex items-center justify-center text-foreground/20">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                           <polyline points="14 2 14 8 20 8" />
                         </svg>

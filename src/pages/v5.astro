@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import V5_Navbar from '../components/v5/Navbar';
+import V5_Hero from '../components/v5/Hero';
+import V5_LinearFeatures from '../components/v5/LinearFeatures';
+import V5_Waitlist from '../components/v5/Waitlist';
+import Footer from '../components/Footer';
+import VersionSwitcher from '../components/VersionSwitcher';
+---
+
+<Layout title="Symptoria | V5: Minimalist Focus">
+	<V5_Navbar client:load />
+	<main class="bg-white">
+		<V5_Hero client:load />
+		
+		{/* Visual Divider */}
+		<div class="h-px w-full bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+
+		<V5_LinearFeatures client:load />
+		<V5_Waitlist client:load />
+	</main>
+	<Footer />
+	<VersionSwitcher client:load />
+</Layout>

@@ -25,10 +25,13 @@ export default function Navbar() {
         }`}
       >
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center shadow-lg shadow-accent/20">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-              <path d="M12 2v20M2 12h20" />
-            </svg>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <img src="/src/assets/icon.png" alt="Symptoria Icon" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="w-8 h-8 bg-accent rounded-lg items-center justify-center shadow-lg shadow-accent/20 hidden">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                <path d="M12 2v20M2 12h20" />
+              </svg>
+            </div>
           </div>
           <span class="font-sans font-bold tracking-tighter text-lg">Symptoria</span>
         </div>
