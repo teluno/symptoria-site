@@ -4,6 +4,7 @@ export default function Hero() {
   const [scrollOffset, setScrollOffset] = createSignal(0);
   const [maxScroll, setMaxScroll] = createSignal(0);
   const [headerHeight, setHeaderHeight] = createSignal(0);
+  const [isReady, setIsReady] = createSignal(false);
   
   let containerRef: HTMLDivElement | undefined;
   let imgRef: HTMLImageElement | undefined;
@@ -21,30 +22,31 @@ export default function Hero() {
         
         setHeaderHeight(hHeight);
         
-        // The scrollable area is the image height minus the space between header and tabbar
         const visibleArea = viewportHeight - hHeight - tHeight;
         const scrollable = Math.max(0, imgRef.clientHeight - visibleArea);
         
         setMaxScroll(scrollable);
-        // Start in the middle of the timeline
         setScrollOffset(scrollable / 2);
+        
+        // Final layout is ready, trigger entrance
+        setTimeout(() => setIsReady(true), 50);
       }
     };
 
-    // Use a combined check for all images
     const images = [imgRef, headerRef, tabbarRef];
     let loadedCount = 0;
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount === images.length) updateMaxScroll();
+    };
+
     images.forEach(img => {
       if (img.complete) {
-        loadedCount++;
+        checkLoaded();
       } else {
-        img.onload = () => {
-          loadedCount++;
-          if (loadedCount === images.length) updateMaxScroll();
-        };
+        img.onload = checkLoaded;
       }
     });
-    if (loadedCount === images.length) updateMaxScroll();
 
     let lastPageY = window.scrollY;
     const handlePageScroll = () => {
@@ -52,7 +54,6 @@ export default function Hero() {
       const deltaY = currentY - lastPageY;
       lastPageY = currentY;
 
-      // Reduced sensitivity (0.3) for a very subtle sync effect
       if (currentY < window.innerHeight) {
         const next = Math.max(0, Math.min(maxScroll(), scrollOffset() + deltaY * 0.3));
         setScrollOffset(next);
@@ -88,7 +89,11 @@ export default function Hero() {
       <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/3 -z-10 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2" />
 
       <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
-        <div class="max-w-2xl animate-fade-up z-10">
+        <div 
+          class={`max-w-2xl z-10 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isReady() ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+          }`}
+        >
           <h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter leading-[0.9] mb-6">
             Your health history, <br />
             <span class="text-accent">finally organized.</span>
@@ -108,8 +113,12 @@ export default function Hero() {
           </div>
         </div>
 
-        <div class="relative flex items-center justify-center lg:justify-end animate-fade-up [animation-delay:200ms]">
-          <div class="lg:absolute lg:top-1/2 lg:-translate-y-1/3 lg:right-0">
+        <div class="relative flex items-center justify-center lg:justify-end">
+          <div 
+            class={`lg:absolute lg:top-1/2 lg:-translate-y-1/3 lg:right-0 transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isReady() ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+            }`}
+          >
             {/* Dynamic Phone Mockup with Double Bezel */}
             <div class="relative p-2 bg-white/5 rounded-[3.5rem] ring-1 ring-black/5 dark:ring-white/10 shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group">
               <div 

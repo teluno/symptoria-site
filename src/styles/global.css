@@ -45,6 +45,7 @@
 
     /* Animations */
     --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-fade-down: fade-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     --animate-float: float 6s ease-in-out infinite;
     --animate-shimmer: shimmer 2.5s infinite linear;
 
@@ -52,6 +53,17 @@
         from {
             opacity: 0;
             transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-down {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
         }
         to {
             opacity: 1;
@@ -188,7 +200,7 @@
         @apply border-border;
     }
     body {
-        @apply bg-background text-foreground selection:bg-accent/20;
+        @apply bg-background text-foreground antialiased selection:bg-accent/20;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
 }
