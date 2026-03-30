@@ -1,4 +1,86 @@
+import { createSignal, onMount } from 'solid-js';
+
 export default function Hero() {
+  const [scrollOffset, setScrollOffset] = createSignal(0);
+  const [maxScroll, setMaxScroll] = createSignal(0);
+  const [headerHeight, setHeaderHeight] = createSignal(0);
+  
+  let containerRef: HTMLDivElement | undefined;
+  let imgRef: HTMLImageElement | undefined;
+  let headerRef: HTMLImageElement | undefined;
+  let tabbarRef: HTMLImageElement | undefined;
+
+  onMount(() => {
+    if (!imgRef || !containerRef || !headerRef || !tabbarRef) return;
+
+    const updateMaxScroll = () => {
+      if (imgRef && containerRef && headerRef && tabbarRef) {
+        const hHeight = headerRef.clientHeight;
+        const tHeight = tabbarRef.clientHeight;
+        const viewportHeight = containerRef.clientHeight;
+        
+        setHeaderHeight(hHeight);
+        
+        // The scrollable area is the image height minus the space between header and tabbar
+        const visibleArea = viewportHeight - hHeight - tHeight;
+        const scrollable = Math.max(0, imgRef.clientHeight - visibleArea);
+        
+        setMaxScroll(scrollable);
+        // Start in the middle of the timeline
+        setScrollOffset(scrollable / 2);
+      }
+    };
+
+    // Use a combined check for all images
+    const images = [imgRef, headerRef, tabbarRef];
+    let loadedCount = 0;
+    images.forEach(img => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === images.length) updateMaxScroll();
+        };
+      }
+    });
+    if (loadedCount === images.length) updateMaxScroll();
+
+    let lastPageY = window.scrollY;
+    const handlePageScroll = () => {
+      const currentY = window.scrollY;
+      const deltaY = currentY - lastPageY;
+      lastPageY = currentY;
+
+      // Reduced sensitivity (0.3) for a very subtle sync effect
+      if (currentY < window.innerHeight) {
+        const next = Math.max(0, Math.min(maxScroll(), scrollOffset() + deltaY * 0.3));
+        setScrollOffset(next);
+      }
+    };
+
+    const handleMockupWheel = (e: WheelEvent) => {
+      const delta = e.deltaY;
+      const current = scrollOffset();
+      const next = Math.max(0, Math.min(maxScroll(), current + delta));
+
+      if (next !== current) {
+        e.preventDefault();
+        setScrollOffset(next);
+      }
+    };
+
+    window.addEventListener('scroll', handlePageScroll, { passive: true });
+    containerRef.addEventListener('wheel', handleMockupWheel, { passive: false });
+    window.addEventListener('resize', updateMaxScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handlePageScroll);
+      containerRef?.removeEventListener('wheel', handleMockupWheel);
+      window.removeEventListener('resize', updateMaxScroll);
+    };
+  });
+
   return (
     <section class="relative min-h-[100dvh] flex items-center overflow-hidden py-20 lg:py-0">
       {/* Background Decorative Elements */}
@@ -28,14 +110,47 @@ export default function Hero() {
 
         <div class="relative flex items-center justify-center lg:justify-end animate-fade-up [animation-delay:200ms]">
           <div class="lg:absolute lg:top-1/2 lg:-translate-y-1/3 lg:right-0">
-            {/* Main Screenshot with Double Bezel */}
-            <div class="relative p-2 bg-white/5 rounded-[3rem] ring-1 ring-black/5 dark:ring-white/10 shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group">
-              <div class="overflow-hidden rounded-[2.5rem] bg-surface ring-1 ring-black/5 shadow-inner">
+            {/* Dynamic Phone Mockup with Double Bezel */}
+            <div class="relative p-2 bg-white/5 rounded-[3.5rem] ring-1 ring-black/5 dark:ring-white/10 shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group">
+              <div 
+                ref={containerRef}
+                class="relative w-[300px] md:w-[380px] aspect-[9/19.5] bg-surface rounded-[3rem] overflow-hidden ring-1 ring-black/5 shadow-inner"
+              >
+                
+                {/* Fixed Header */}
                 <img 
-                  src="/src/assets/screens/simulator_screenshot_F62632D7-B788-4C2E-ABD2-F7C65E48D797.png" 
-                  alt="Symptoria App Screen" 
-                  class="w-[300px] md:w-[400px] aspect-[9/19.5] object-cover scale-[1.01] group-hover:scale-100 transition-transform duration-700"
+                  ref={headerRef}
+                  src="/src/assets/screens/main-screen/header.png" 
+                  alt="App Header" 
+                  class="absolute top-0 left-0 w-full z-30 pointer-events-none"
                 />
+
+                {/* Scrolling Content Container */}
+                <div 
+                  class="absolute left-0 w-full transition-transform duration-300 ease-out"
+                  style={{ 
+                    top: `${headerHeight()}px`,
+                    transform: `translateY(${-scrollOffset()}px)` 
+                  }}
+                >
+                  <img 
+                    ref={imgRef}
+                    src="/src/assets/screens/main-screen/content.png" 
+                    alt="App Content" 
+                    class="w-full h-auto"
+                  />
+                </div>
+
+                {/* Fixed Tabbar */}
+                <img 
+                  ref={tabbarRef}
+                  src="/src/assets/screens/main-screen/tapbar.png" 
+                  alt="App Tabbar" 
+                  class="absolute bottom-0 left-0 w-full z-30 pointer-events-none"
+                />
+
+                {/* Bezel Overlay for Refraction */}
+                <div class="absolute inset-0 rounded-[3rem] ring-1 ring-inset ring-white/10 pointer-events-none z-40" />
               </div>
             </div>
           </div>
