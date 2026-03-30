@@ -1,1 +1,203 @@
 @import "tailwindcss";
+
+@theme {
+    /* Primitive Colors (Do not change between light and dark) */
+    --color-white: oklch(100% 0 0);
+    --color-black: oklch(0% 0 0);
+    --color-snow: oklch(0.9911 0 0);
+    --color-eclipse: oklch(0.2103 0.0059 285.89);
+
+    /* UI Colors */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-surface: var(--surface);
+    --color-surface-foreground: var(--surface-foreground);
+    --color-surface-secondary: var(--surface-secondary);
+    --color-surface-secondary-foreground: var(--surface-secondary-foreground);
+    --color-surface-tertiary: var(--surface-tertiary);
+    --color-surface-tertiary-foreground: var(--surface-tertiary-foreground);
+    --color-overlay: var(--overlay);
+    --color-overlay-foreground: var(--overlay-foreground);
+    --color-muted: var(--muted);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-border: var(--border);
+    --color-separator: var(--separator);
+    --color-focus: var(--focus);
+    --color-link: var(--link);
+
+    /* Border */
+    --border-width-default: 1px;
+    --radius-default: 0.3rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-3xl: 2.5rem;
+
+    /* Shadows */
+    --shadow-surface: var(--surface-shadow);
+    --shadow-overlay: var(--overlay-shadow);
+    --shadow-field: var(--field-shadow);
+
+    /* Fonts */
+    --font-sans: 'Geist Sans', 'SF Pro Display', 'Inter', system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', 'Newsreader', 'Playfair Display', serif;
+    --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+
+    /* Animations */
+    --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-shimmer: shimmer 2.5s infinite linear;
+
+    @keyframes fade-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --background: #f8fafc;
+        --foreground: #1e293b;
+
+        --surface: #ffffff;
+        --surface-foreground: #1e293b;
+        --surface-secondary: #f1f5f9;
+        --surface-secondary-foreground: #1e293b;
+        --surface-tertiary: #eaf0f7;
+        --surface-tertiary-foreground: #1e293b;
+
+        --overlay: #ffffff;
+        --overlay-foreground: #1e293b;
+
+        --muted: #94a3b8;
+
+        --default: #f1f5f9;
+        --default-foreground: #1e293b;
+
+        --accent: #4f8fb8;
+        --accent-foreground: #ffffff;
+
+        --field-background: #ffffff;
+        --field-foreground: #1e293b;
+        --field-placeholder: #94a3b8;
+        --field-border: #edf2f7;
+
+        --success: #56a67d;
+        --success-foreground: #ffffff;
+        --warning: #b89669;
+        --warning-foreground: #1e293b;
+        --danger: #b6879d;
+        --danger-foreground: #ffffff;
+
+        --segment: #ffffff;
+        --segment-foreground: #1e293b;
+
+        --border: #e2e8f0;
+        --separator: #edf2f7;
+        --focus: #4f8fb8;
+        --link: #5d87b8;
+
+        --surface-shadow:
+            0 2px 4px 0 rgba(0, 0, 0, 0.04),
+            0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.04);
+        --overlay-shadow:
+            0 2px 8px 0 rgba(0, 0, 0, 0.02),
+            0 -6px 12px 0 rgba(0, 0, 0, 0.01),
+            0 14px 28px 0 rgba(0, 0, 0, 0.03);
+        --field-shadow:
+            0 2px 4px 0 rgba(0, 0, 0, 0.04),
+            0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --background: #15181d;
+            --foreground: #e5e7eb;
+
+            --surface: #1b2029;
+            --surface-foreground: #e5e7eb;
+            --surface-secondary: #1b1f26;
+            --surface-secondary-foreground: #e5e7eb;
+            --surface-tertiary: #27303d;
+            --surface-tertiary-foreground: #e5e7eb;
+
+            --overlay: #1b2029;
+            --overlay-foreground: #e5e7eb;
+
+            --muted: #7f8896;
+
+            --default: #1b1f26;
+            --default-foreground: #e5e7eb;
+
+            --accent: #74a9cc;
+            --accent-foreground: #15181d;
+
+            --field-background: #1b2029;
+            --field-foreground: #e5e7eb;
+            --field-placeholder: #7f8896;
+            --field-border: #2e3745;
+
+            --success: #63b48a;
+            --success-foreground: #15181d;
+            --warning: #d1b187;
+            --warning-foreground: #15181d;
+            --danger: #ca9cb0;
+            --danger-foreground: #15181d;
+
+            --segment: #27303d;
+            --segment-foreground: #e5e7eb;
+
+            --border: #3a4352;
+            --separator: #2e3745;
+            --focus: #74a9cc;
+            --link: #87abd8;
+
+            --surface-shadow: 0 0 0 0 transparent inset;
+            --overlay-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+            --field-shadow: 0 0 0 0 transparent inset;
+        }
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground selection:bg-accent/20;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    z-index: 50;
+}

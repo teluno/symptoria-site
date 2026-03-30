@@ -1,8 +1,57 @@
 ---
-import Welcome from '@/components/Welcome';
-import Layout from '@/layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import BentoGrid from '../components/BentoGrid';
+import WaitlistForm from '../components/WaitlistForm';
+import Footer from '../components/Footer';
 ---
 
 <Layout>
-	<Welcome />
+	<Navbar client:load />
+	<main>
+		<Hero client:load />
+		<BentoGrid client:load />
+		
+		{/* Social Proof / Stats Section */}
+		<section class="py-24 border-y border-border bg-surface/30">
+			<div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+				<div>
+					<div class="text-3xl md:text-5xl font-sans font-extrabold tracking-tighter mb-2">100%</div>
+					<div class="text-sm font-medium text-foreground/40 uppercase tracking-widest">Local Ownership</div>
+				</div>
+				<div>
+					<div class="text-3xl md:text-5xl font-sans font-extrabold tracking-tighter mb-2">0</div>
+					<div class="text-sm font-medium text-foreground/40 uppercase tracking-widest">Medical Promises</div>
+				</div>
+				<div>
+					<div class="text-3xl md:text-5xl font-sans font-extrabold tracking-tighter mb-2">Unlimited</div>
+					<div class="text-sm font-medium text-foreground/40 uppercase tracking-widest">Linked Records</div>
+				</div>
+				<div>
+					<div class="text-3xl md:text-5xl font-sans font-extrabold tracking-tighter mb-2">Privacy</div>
+					<div class="text-sm font-medium text-foreground/40 uppercase tracking-widest">By Design</div>
+				</div>
+			</div>
+		</section>
+
+		{/* Trust / Quote Section */}
+		<section class="py-32 bg-surface">
+			<div class="container mx-auto px-6 text-center max-w-4xl">
+				<div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent mx-auto mb-10">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+					</svg>
+				</div>
+				<blockquote class="text-3xl md:text-4xl font-serif italic text-foreground/80 leading-snug mb-8">
+					"I used to go to appointments with a mess of sticky notes. Now I have a clear, connected timeline of my symptoms and lab results. It's the first health app that actually feels like it's mine."
+				</blockquote>
+				<div class="font-sans font-bold text-lg">Alex River</div>
+				<div class="text-foreground/40 text-sm">Chronic Condition Manager</div>
+			</div>
+		</section>
+
+		<WaitlistForm client:load />
+	</main>
+	<Footer />
 </Layout>
