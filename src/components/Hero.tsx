@@ -1,5 +1,9 @@
 import { createSignal, onMount } from "solid-js";
 
+import headerImage from "@/assets/screens/main-screen/header.png";
+import contentImage from "@/assets/screens/main-screen/content.png";
+import tabbarImage from "@/assets/screens/main-screen/tapbar.png";
+
 export default function Hero() {
   const [scrollOffset, setScrollOffset] = createSignal(0);
   const [maxScroll, setMaxScroll] = createSignal(0);
@@ -136,7 +140,7 @@ export default function Hero() {
                 {/* Fixed Header */}
                 <img
                   ref={headerRef}
-                  src="/src/assets/screens/main-screen/header.png"
+                  src={headerImage}
                   alt="App Header"
                   class="absolute top-0 left-0 w-full z-30 pointer-events-none"
                 />
@@ -151,7 +155,7 @@ export default function Hero() {
                 >
                   <img
                     ref={imgRef}
-                    src="/src/assets/screens/main-screen/content.png"
+                    src={contentImage}
                     alt="App Content"
                     class="w-full h-auto"
                   />
@@ -160,7 +164,7 @@ export default function Hero() {
                 {/* Fixed Tabbar */}
                 <img
                   ref={tabbarRef}
-                  src="/src/assets/screens/main-screen/tapbar.png"
+                  src={tabbarImage}
                   alt="App Tabbar"
                   class="absolute bottom-0 left-0 w-full z-30 pointer-events-none"
                 />
