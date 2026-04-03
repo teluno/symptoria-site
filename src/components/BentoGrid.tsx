@@ -16,30 +16,32 @@ export default function BentoGrid() {
           {/* Timeline - Row 1, Col 1-7 */}
           <div class="md:col-span-7 group">
             <div class="h-full p-8 md:p-10 rounded-[2.5rem] bg-surface border border-border shadow-surface overflow-hidden relative">
-              <div class="relative z-10 mb-20">
-                <h3 class="text-2xl font-bold tracking-tight mb-4">See the full story</h3>
-                <p class="text-foreground/60 max-w-[45ch]">
-                  Instead of loose notes and half-remembered dates, you get a readable timeline that keeps appointments, symptoms, and follow-ups in sequence.
-                </p>
-              </div>
+              <div class="flex flex-col md:flex-row gap-8 items-start h-full">
+                <div class="flex-1 relative z-10">
+                  <h3 class="text-2xl font-bold tracking-tight mb-4">See the full story</h3>
+                  <p class="text-foreground/60">
+                    Instead of loose notes and half-remembered dates, you get a readable timeline that keeps appointments, symptoms, and follow-ups in sequence.
+                  </p>
+                </div>
 
-              {/* Animated Timeline Preview */}
-              <div class="absolute right-[-20px] bottom-[-20px] w-[300px] md:w-[400px] h-[300px] bg-surface-secondary rounded-[2rem] border border-border p-6 rotate-[-5deg] group-hover:rotate-0 transition-transform duration-700 shadow-xl overflow-hidden">
-                <div class="space-y-4">
-                  {[
-                    { title: 'Migraine Episode', date: 'Mar 24', color: 'bg-danger' },
-                    { title: 'Dr. Aris Thorne', date: 'Mar 20', color: 'bg-accent' },
-                    { title: 'Blood Work Results', date: 'Mar 15', color: 'bg-success' },
-                    { title: 'Follow-up Appt', date: 'Mar 10', color: 'bg-accent' }
-                  ].map((item, i) => (
-                    <div class={`flex items-center gap-4 p-3 rounded-xl bg-surface border border-border transition-all duration-500`}>
-                      <div class={`w-2 h-10 ${item.color} rounded-full`} />
-                      <div>
-                        <div class="text-xs font-bold text-foreground/40">{item.date}</div>
-                        <div class="text-sm font-bold">{item.title}</div>
+                {/* Animated Timeline Preview */}
+                <div class="flex-1 relative w-full h-[300px] bg-surface-secondary rounded-[2rem] border border-border p-6 md:rotate-[-5deg] md:group-hover:rotate-0 transition-transform duration-700 shadow-xl overflow-hidden md:-mr-16 md:-mb-16">
+                  <div class="space-y-4">
+                    {[
+                      { title: 'Migraine Episode', date: 'Mar 24', color: 'bg-danger' },
+                      { title: 'Dr. Aris Thorne', date: 'Mar 20', color: 'bg-accent' },
+                      { title: 'Blood Work Results', date: 'Mar 15', color: 'bg-success' },
+                      { title: 'Follow-up Appt', date: 'Mar 10', color: 'bg-accent' }
+                    ].map((item, i) => (
+                      <div class={`flex items-center gap-4 p-3 rounded-xl bg-surface border border-border transition-all duration-500`}>
+                        <div class={`w-2 h-10 ${item.color} rounded-full`} />
+                        <div>
+                          <div class="text-xs font-bold text-foreground/40">{item.date}</div>
+                          <div class="text-sm font-bold">{item.title}</div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

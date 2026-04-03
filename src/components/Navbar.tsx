@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <nav 
       class={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-        scrolled() ? 'w-[90%] md:w-[600px]' : 'w-[95%] md:w-[800px]'
+        scrolled() ? 'w-[90%] max-w-[600px]' : 'w-[95%] max-w-[800px]'
       }`}
     >
       <div 
