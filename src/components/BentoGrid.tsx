@@ -76,7 +76,7 @@ export default function BentoGrid() {
               <div class="relative z-10">
                 <h3 class="text-2xl font-bold tracking-tight mb-4">Your data stays yours</h3>
                 <p class="text-foreground/60">
-                  Your medical data never leaves your device. We use local-first storage to ensure total privacy. Secure on-device backups are coming in the next update.
+                  Your medical data stays on your device, not on our servers. Everything is stored locally to keep your health history private. Secure backups are coming soon.
                 </p>
               </div>
               

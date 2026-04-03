@@ -1,4 +1,5 @@
 import { createSignal, onMount } from 'solid-js';
+import icon from '../assets/icon.png';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = createSignal(false);
@@ -24,26 +25,20 @@ export default function Navbar() {
             : 'bg-surface/40 shadow-surface'
         }`}
       >
-        <div class="flex items-center gap-2">
+        <a href="/#top" class="flex items-center gap-2">
           <div class="w-8 h-8 flex items-center justify-center">
-            <img src="/src/assets/icon.png" alt="Symptoria Icon" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="w-8 h-8 bg-accent rounded-lg items-center justify-center shadow-lg shadow-accent/20 hidden">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                <path d="M12 2v20M2 12h20" />
-              </svg>
-            </div>
+            <img src={icon.src} alt="Symptoria Icon" class="w-full h-full object-contain" />
           </div>
           <span class="font-sans font-bold tracking-tighter text-lg">Symptoria</span>
-        </div>
+        </a>
 
         <div class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors">Features</a>
-          <a href="#privacy" class="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors">Privacy</a>
-          <a href="#waitlist" class="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors">Waitlist</a>
+          <a href="/#features" class="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors">Features</a>
+          <a href="/#waitlist" class="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors">Waitlist</a>
         </div>
 
         <a 
-          href="#waitlist"
+          href="/#waitlist"
           class="bg-foreground text-background px-5 py-2 rounded-full text-sm font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-foreground/5"
         >
           Get Early Access

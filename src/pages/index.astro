@@ -1,20 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import BentoGrid from '../components/BentoGrid';
-import WaitlistForm from '../components/WaitlistForm';
-import Footer from '../components/Footer';
-import VersionSwitcher from '../components/VersionSwitcher';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import BentoGrid from "../components/BentoGrid";
+import WaitlistForm from "../components/WaitlistForm";
+import Footer from "../components/Footer";
 ---
 
 <Layout>
-	<Navbar client:load />
-	<main>
-		<Hero client:load />
-		<BentoGrid client:load />
-		<WaitlistForm client:load />
-	</main>
-	<Footer />
-	<VersionSwitcher client:load />
+    <Navbar client:load />
+    <main>
+        <Hero client:load />
+        <BentoGrid client:load />
+        <WaitlistForm client:load />
+    </main>
+    <Footer />
 </Layout>
