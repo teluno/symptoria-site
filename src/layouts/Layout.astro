@@ -1,18 +1,56 @@
 ---
 import "../styles/global.css";
+
+interface Props {
+    title?: string;
+}
+
+const {
+    title = "Symptoria | Your personal health history, finally organized.",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="m-0 h-full w-full">
+<html lang="en" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro Basics</title>
+        <title>{title}</title>
+        <meta
+            name="description"
+            content="Symptoria is a private, secure timeline for your medical journey. Keep events, doctors, and records connected in one clear place."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+            rel="stylesheet"
+        />
     </head>
-    <body class="m-0 h-full w-full">
+    <body
+        id="top"
+        class="bg-background text-foreground antialiased selection:bg-accent/20"
+    >
+        <div class="noise-overlay"></div>
         <slot />
     </body>
+    <script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="930aa60f-4815-4e52-916d-e9fcdcf6920e"></script>
 </html>
+
+<style is:global>
+    :root {
+        --font-sans:
+            "Geist Sans", "SF Pro Display", "Inter", system-ui, sans-serif;
+    }
+
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+</style>

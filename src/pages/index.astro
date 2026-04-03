@@ -1,8 +1,18 @@
 ---
-import Welcome from '@/components/Welcome';
-import Layout from '@/layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import BentoGrid from "../components/BentoGrid";
+import WaitlistForm from "../components/WaitlistForm";
+import Footer from "../components/Footer";
 ---
 
 <Layout>
-	<Welcome />
+    <Navbar client:load />
+    <main>
+        <Hero client:load />
+        <BentoGrid client:load />
+        <WaitlistForm client:load />
+    </main>
+    <Footer />
 </Layout>
