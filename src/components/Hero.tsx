@@ -140,7 +140,7 @@ export default function Hero() {
                 {/* Fixed Header */}
                 <img
                   ref={headerRef}
-                  src={headerImage}
+                  src={headerImage.src}
                   alt="App Header"
                   class="absolute top-0 left-0 w-full z-30 pointer-events-none"
                 />
@@ -155,7 +155,7 @@ export default function Hero() {
                 >
                   <img
                     ref={imgRef}
-                    src={contentImage}
+                    src={contentImage.src}
                     alt="App Content"
                     class="w-full h-auto"
                   />
@@ -164,7 +164,7 @@ export default function Hero() {
                 {/* Fixed Tabbar */}
                 <img
                   ref={tabbarRef}
-                  src={tabbarImage}
+                  src={tabbarImage.src}
                   alt="App Tabbar"
                   class="absolute bottom-0 left-0 w-full z-30 pointer-events-none"
                 />
